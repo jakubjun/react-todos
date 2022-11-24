@@ -1,10 +1,11 @@
 import BaseLayout from '../component/layout/baseLayout/BaseLayout';
-import IndexPage from '../component/page/index/IndexPage';
+import TodoListPage from '../component/page/todoListPage/TodoListPage';
 
 export const notFoundPathName = 'notfound';
 
 export const routes = {
   // path, [layout, component]
-  '/': [BaseLayout, IndexPage],
-  [notFoundPathName]: [BaseLayout, IndexPage],
+  '/': [BaseLayout, TodoListPage],
+  '/todo/:id': [BaseLayout, TodoListPage],
+  [notFoundPathName]: [BaseLayout, TodoListPage],
 };
