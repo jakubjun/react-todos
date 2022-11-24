@@ -1,15 +1,12 @@
+import SortOption from '../sortOption/SortOption';
+import './sorter.less';
+
 const CLASS_NAME = 'sorter';
-export function Sorter() {
-  // const [selectedSortOption, sortOptions] = useSorter();
-  const sortOptions = [
-    ['A->z', 'Z->a'],
-    ['new->old', 'old->new'],
-
-  ];
+export default function Sorter() {
   return (
-
-    <div>
-      {}
+    <div className={CLASS_NAME}>
+      <SortOption selected label="A->z" />
+      <SortOption label="A->z" />
     </div>
   );
 }

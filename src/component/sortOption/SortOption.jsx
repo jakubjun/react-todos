@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import classNamer from '../../utils/classNamer/classNamer';
+import './sortOption.less';
 
 const CLASS_NAME = 'sort-option';
 

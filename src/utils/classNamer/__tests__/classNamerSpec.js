@@ -6,11 +6,11 @@ describe('classNamer', () => {
       expect(classNamer('')).toBe('');
     });
 
-    test('with single string className', () => {
+    test('with single string', () => {
       expect(classNamer('test')).toBe('test');
     });
 
-    test('with multiple string classNames', () => {
+    test('with multiple string', () => {
       expect(classNamer('test color-red padding-right')).toBe('test color-red padding-right');
     });
 

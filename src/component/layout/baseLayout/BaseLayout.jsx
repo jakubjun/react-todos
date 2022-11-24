@@ -12,6 +12,7 @@ export default function BaseLayout(props) {
       <div className={`${CLASS_NAME}__container`}>
         <Header />
         <div className={`${CLASS_NAME}__container__content`}>
+
           {children}
         </div>
       </div>

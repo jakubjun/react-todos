@@ -1,3 +1,5 @@
+import Sorter from '../../sorter/Sorter';
+
 export default function TodoListPage() {
-  return <div> hello from index page</div>;
+  return <div><Sorter /></div>;
 }
