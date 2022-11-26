@@ -1,5 +1,3 @@
-const ERROR_STR = 'classNamer takes only strings and objects as arguments';
-
 function reduceStringToClassNameSet(classNameString, classNameSet) {
   classNameString.split(' ').forEach((word) => classNameSet.add(word));
 }
@@ -13,21 +11,15 @@ function reduceObjectToClassNameSet(classNameObject, classNameSet) {
 }
 
 function argumentReducer(classNameSet, argument) {
-  if (Array.isArray(argument)) {
-    throw Error(ERROR_STR);
-  }
-
   if (typeof argument === 'string') {
     reduceStringToClassNameSet(argument, classNameSet);
-    return classNameSet;
   }
 
   if (typeof argument === 'object') {
     reduceObjectToClassNameSet(argument, classNameSet);
-    return classNameSet;
   }
 
-  throw Error(ERROR_STR);
+  return classNameSet;
 }
 
 /**

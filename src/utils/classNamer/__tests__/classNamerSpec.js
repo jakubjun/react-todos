@@ -46,36 +46,4 @@ describe('classNamer', () => {
       expect(classNamer({ test: true }, { test: true })).toBe('test');
     });
   });
-
-  describe('should throw', () => {
-    test('if array is passed', () => {
-      expect(() => {
-        classNamer(['test']);
-      }).toThrow();
-
-      expect(() => {
-        classNamer('test', ['test']);
-      }).toThrow();
-
-      expect(() => {
-        classNamer(['test'], 'test');
-      }).toThrow();
-    });
-  });
-
-  describe('should throw', () => {
-    test('if number is passed', () => {
-      expect(() => {
-        classNamer(1);
-      }).toThrow();
-
-      expect(() => {
-        classNamer(1, 2);
-      }).toThrow();
-
-      expect(() => {
-        classNamer(1, 2, 'test');
-      }).toThrow();
-    });
-  });
 });
