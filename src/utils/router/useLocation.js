@@ -1,3 +1,4 @@
 export default function useLocation() {
-  return window.location.pathname.replace('/react-todos', '');
+  alert(window.location.pathname.replace('react-todos', ''));
+  return window.location.pathname.replace('react-todos', '');
 }
