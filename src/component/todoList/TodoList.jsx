@@ -1,8 +1,8 @@
-import useTodos from '../../utils/todos/useTodos';
+import { useSelector } from 'react-redux';
 import TodoItem from '../todoItem/TodoItem';
 
 export default function TodoList() {
-  const todos = useTodos();
+  const todos = useSelector((state) => state.todos.items);
 
   return <div>{todos.map((todo) => <TodoItem todo={todo} />)}</div>;
 }

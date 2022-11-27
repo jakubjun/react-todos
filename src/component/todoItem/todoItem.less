@@ -1,4 +1,36 @@
 .todo-item {
   border-bottom: 1px solid @primary-color;
-  padding: 8px 16px;
+  display: flex;
+
+  &:hover {
+    background-color: darken(@background-color, 30%)
+  }
+
+  &_title {
+    flex-grow: 1;
+    padding: 8px 16px;
+  }
+
+  &_actions {
+    display: flex;
+    align-items: center;
+
+    &_action {
+      background-color: inherit;
+      border: 0;
+      border-left: 1px solid @primary-color;
+      color: @primary-color;
+      padding: 0;
+      display: block;
+      height: 100%;
+      width: 25px;
+      cursor: pointer;
+
+
+      &:hover {
+        background-color: @primary-color;
+        color: @background-color;
+      }
+    }
+  }
 }
