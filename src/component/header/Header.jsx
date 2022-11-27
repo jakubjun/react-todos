@@ -8,7 +8,6 @@ export default function Header() {
       <Link href="/">react-todo ⚛️</Link>
       <Link href="/">about</Link>
       <Link href="/">github</Link>
-
     </div>
   );
 }
