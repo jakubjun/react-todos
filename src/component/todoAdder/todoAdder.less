@@ -1,5 +1,5 @@
 .todo-adder {
-  border-top: 1px solid @primary-color;
+  // border-top: 1px solid @primary-color;
   display: flex;
 
   input {
@@ -10,16 +10,30 @@
     color: @primary-color;
     display: block;
     width: 100%;
-    font-size: 16px;
+    font-size: 20px;
+    flex-grow:1;
+    padding: 8px;
 
 
     &:focus {
-      outline: 1px solid @primary-color;
+      outline:0;
 
     }
   }
 
   button {
-    justify-self: end;
+    flex-grow:1;
+    background-color: @background-color;
+    border: 0;
+    cursor: pointer;
+    border-left: 1px solid @primary-color;
+    color: @primary-color;
+    font-weight: 800;
+
+    &:hover {
+      background-color: @primary-color;
+      color: @background-color;
+    }
+
   }
 }

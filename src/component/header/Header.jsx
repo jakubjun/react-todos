@@ -5,8 +5,10 @@ const CLASS_NAME = 'header';
 export default function Header() {
   return (
     <div className={CLASS_NAME}>
-      <Link href="hello">react-todo</Link>
-      <Link href="test">test</Link>
+      <Link href="/">react-todo ⚛️</Link>
+      <Link href="/">about</Link>
+      <Link href="/">github</Link>
+
     </div>
   );
 }

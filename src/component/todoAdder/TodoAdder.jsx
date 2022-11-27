@@ -4,10 +4,8 @@ const CLASS_NAME = 'todo-adder';
 export default function TodoAdder() {
   return (
     <div className={CLASS_NAME}>
-      <div>
-        <input type="text" />
-      </div>
-      <button>hello</button>
+      <input type="text" />
+      <button>save</button>
     </div>
   );
 }
