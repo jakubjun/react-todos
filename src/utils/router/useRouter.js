@@ -1,5 +1,7 @@
 import useLocation from './useLocation';
-import { routes as configRoutes, notFoundPathName } from '../../config/routes';
+import configRoutes from '../../config/routes';
+
+export const notFoundPathName = 'notfound';
 
 export default function useRouter(routes = configRoutes) {
   const path = useLocation();

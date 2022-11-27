@@ -1,18 +1,20 @@
-import React from 'react';
-import { render } from '@testing-library/react';
+import renderer from 'react-test-renderer';
 import useRouter from '../useRouter';
-
-const Layout = React.createElement('div');
+import { notFoundPathName } from '../../../config/routes';
 
 const routes = {
   // path, [layout, component]
-  '/': [Layout, Layout],
+  '/': ['index_layout', 'index_page'],
   // '/todo/:id': [BaseLayout, TodoListPage],
-  // [notFoundPathName]: [BaseLayout, TodoListPage],
+  [notFoundPathName]: ['not_found_layout', 'not_found_page'],
 };
 describe('useRouter', () => {
-  const router = useRouter(routes);
+  delete window.location;
+  window.location = 'http://hello.world/';
+  const [layout, page] = useRouter(routes);
+  const component = renderer.create(layout).toJSON();
+
   it('should route', () => {
-    expect(render(router)).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

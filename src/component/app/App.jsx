@@ -1,4 +1,5 @@
 import useRouter from '../../utils/router/useRouter';
+import Router from '../router/Router';
 import './app.less';
 
 function App() {
@@ -6,9 +7,7 @@ function App() {
 
   return (
     <div>
-      <Layout>
-        <Page />
-      </Layout>
+      <Router />
     </div>
   );
 }
