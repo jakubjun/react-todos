@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`useRouter should route 1`] = `"not_found_layout"`;

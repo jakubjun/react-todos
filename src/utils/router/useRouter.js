@@ -1,10 +1,24 @@
 import useLocation from './useLocation';
-import configRoutes from '../../config/routes';
+import configRoutes, { notFoundRoute as configNotFoundRoute } from '../../config/routes';
 
-export const notFoundPathName = 'notfound';
-
-export default function useRouter(routes = configRoutes) {
+export default function useRouter(routes = configRoutes, notFoundRoute = configNotFoundRoute) {
   const path = useLocation();
 
-  return routes[path] || routes[notFoundPathName];
+  const matchedRoute = routes.find(([pattern]) => {
+    if (typeof pattern === 'string') {
+      return pattern === path;
+    }
+
+    if (pattern instanceof RegExp) {
+      return pattern.test(path);
+    }
+
+    return false;
+  });
+
+  if (!matchedRoute) {
+    return notFoundRoute;
+  }
+
+  return [matchedRoute[1], matchedRoute[2]];
 }

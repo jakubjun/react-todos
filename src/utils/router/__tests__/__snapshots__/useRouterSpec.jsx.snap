@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useRouter should route to / 1`] = `
+<div>
+  index layout
+</div>
+`;
+
+exports[`useRouter should route to / 2`] = `
+<div>
+  index page
+</div>
+`;
