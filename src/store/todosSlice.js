@@ -19,7 +19,7 @@ export const todoSlice = createSlice({
     add: (state, action) => {
       let id = null;
 
-      const isIdUsed = (id) => !state.items.find((todo) => todo.id === id);
+      const isIdUsed = (id) => state.items.find((todo) => todo.id === id);
 
       do {
         id = Math.floor(Math.random() * 1000);
