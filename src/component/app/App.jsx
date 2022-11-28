@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { initialize } from '../todoList/todoSlice';
 import Router from '../router/Router';
 import './app.less';
-import { initialize } from '../../store/todosSlice';
 
 function App() {
   const dispatch = useDispatch();

@@ -1,9 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+export const sortOptions = [
+  {
+    id: 'alpha',
+    sortFn: (a, b) => a.title.localeCompare(b.title),
+    label: 'abc',
+  },
+  {
+    id: 'null',
+    sortFn: () => 1,
+    label: 'null',
+  },
+
+];
+
 export const todoSlice = createSlice({
   name: 'todos',
   initialState: {
-    items: [{ title: 'test' }], loading: true,
+    items: [],
+    loading: true,
+    selectedOptionId: sortOptions[0].id,
+    reverse: false,
   },
   reducers: {
     initialize: (state, action) => {
@@ -27,13 +44,28 @@ export const todoSlice = createSlice({
 
       state.items.push({ title: action.payload, id });
     },
+    selectSortOption: (state, action) => {
+      if ((state.selectedOptionId === action.payload) && !state.reverse) {
+        state.reverse = true;
+        state.items = state.items.reverse();
+        return;
+      }
+
+      state.reverse = false;
+      state.selectedOptionId = action.payload;
+      state.items = state.items.sort(
+        sortOptions.find(
+          (sortOption) => sortOption.id === action.payload,
+        ).sortFn,
+      );
+    },
 
   },
 });
 
 // Action creators are generated for each case reducer function
 export const {
-  initialize, check, remove, add,
+  initialize, check, remove, add, selectSortOption,
 } = todoSlice.actions;
 
 export default todoSlice.reducer;

@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { check, remove } from '../../store/todosSlice';
+import { check, remove } from '../todoList/todoSlice';
 import './todoItem.less';
 
 const CLASS_NAME = 'todo-item';

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { add } from '../../store/todosSlice';
+import { add } from '../todoList/todoSlice';
 import './todoAdder.less';
 
 const CLASS_NAME = 'todo-adder';
