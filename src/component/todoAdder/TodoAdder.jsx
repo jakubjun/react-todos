@@ -8,9 +8,9 @@ export default function TodoAdder() {
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   return (
-    <div className={CLASS_NAME}>
+    <form className={CLASS_NAME} onSubmit={(e) => { e.preventDefault(); dispatch(add(title)); setTitle(''); }}>
       <input value={title} onChange={(e) => setTitle(e.target.value)} type="text" />
-      <button onClick={() => { dispatch(add(title)); setTitle(''); }}>save</button>
-    </div>
+      <button type="submit">save</button>
+    </form>
   );
 }
