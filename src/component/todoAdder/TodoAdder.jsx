@@ -11,9 +11,14 @@ export default function TodoAdder() {
   const [title, setTitle] = useState('');
   const [loading, setLoading] = useState(false);
   const userState = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user.user);
 
   const onSubmit = async (event) => {
     event.preventDefault();
+
+    if (!user) {
+      return;
+    }
     setLoading(true);
     const { data, error } = await supaBase
       .from('todos')

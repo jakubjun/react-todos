@@ -12,6 +12,12 @@ function App() {
 
   const fetchState = async () => {
     const { data: { user } } = await supaBase.auth.getUser();
+
+    if (!user) {
+      dispatch(stop());
+      return;
+    }
+
     const { data: todos, error } = await supaBase
       .from('todos')
       .select('*');
