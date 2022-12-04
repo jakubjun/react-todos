@@ -6,12 +6,6 @@ export const sortOptions = [
     sortFn: (a, b) => a.title.localeCompare(b.title),
     label: 'abc',
   },
-  {
-    id: 'null',
-    sortFn: () => 1,
-    label: 'null',
-  },
-
 ];
 
 export const todoSlice = createSlice({
@@ -34,15 +28,7 @@ export const todoSlice = createSlice({
       state.items = state.items.filter((todo) => todo.id !== action.payload);
     },
     add: (state, action) => {
-      let id = null;
-
-      const isIdUsed = (id) => state.items.find((todo) => todo.id === id);
-
-      do {
-        id = Math.floor(Math.random() * 1000);
-      } while (isIdUsed(id));
-
-      state.items.push({ title: action.payload, id });
+      state.items.push(action.payload);
     },
     selectSortOption: (state, action) => {
       if ((state.selectedOptionId === action.payload) && !state.reverse) {

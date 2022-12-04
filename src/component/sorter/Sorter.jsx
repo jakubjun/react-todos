@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from '../header/Header';
 import SortOption from '../sortOption/SortOption';
 import './sorter.less';
-import { selectSortOption, sortOptions } from '../todoList/todoSlice';
+import { selectSortOption, sortOptions } from '../../store/todoSlice';
 
 const CLASS_NAME = 'sorter';
 

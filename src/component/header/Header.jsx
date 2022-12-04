@@ -8,6 +8,7 @@ export default function Header() {
       <Link href="/">react-todo ⚛️</Link>
       <Link href="/about">about</Link>
       <a target="_blank" href="https://github.com/jakubjun/react-todos" rel="noreferrer">github</a>
+      <Link href="/auth">auth</Link>
     </div>
   );
 }
