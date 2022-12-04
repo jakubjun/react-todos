@@ -5,7 +5,7 @@ import App from './component/app/App';
 import './assets/less/reset.less';
 import store from './store/store';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('root') as Element).render(
   <React.StrictMode>
     <Provider store={store}>
       <App />

@@ -1,8 +1,8 @@
-import { useSelector } from 'react-redux';
+import {useAppSelector} from '../../store/hooks';
 import TodoItem from '../todoItem/TodoItem';
 
 export default function TodoList() {
-  const todos = useSelector((state) => state.todos.items);
+  const todos = useAppSelector((state) => state.todos.items);
 
   return (
     <div>

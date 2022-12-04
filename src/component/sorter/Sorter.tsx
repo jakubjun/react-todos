@@ -1,14 +1,14 @@
-import { useDispatch, useSelector } from 'react-redux';
 import Header from '../header/Header';
 import SortOption from '../sortOption/SortOption';
 import './sorter.less';
 import { selectSortOption, sortOptions } from '../../store/todoSlice';
+import {useAppDispatch, useAppSelector} from '../../store/hooks';
 
 const CLASS_NAME = 'sorter';
 
 export default function Sorter() {
-  const { reverse, selectedOptionId } = useSelector((state) => state.todos);
-  const dispatch = useDispatch();
+  const { reverse, selectedOptionId } = useAppSelector((state) => state.todos);
+  const dispatch = useAppDispatch();
 
   return (
     <div className={CLASS_NAME}>

@@ -1,6 +1,6 @@
 import Sorter from '../../sorter/Sorter';
-import TodoList from '../../todoList/TodoList.jsx';
-import TodoAdder from '../../todoAdder/TodoAdder.jsx';
+import TodoList from '../../todoList/TodoList';
+import TodoAdder from '../../todoAdder/TodoAdder';
 
 export default function TodoListPage() {
   return (

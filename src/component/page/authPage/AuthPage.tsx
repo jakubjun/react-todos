@@ -1,27 +1,27 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import Button from '../../button/Button';
 import Input from '../../input/Input';
 import './authPage.less';
-import supaBase from '../../../supaBase.ts';
+import supabase from '../../../db/supabase';
 import { setUser } from '../../../store/userSlice';
+import {useAppDispatch, useAppSelector} from '../../../store/hooks';
 
 const CLASS_NAME = 'auth-page';
 
 export default function AuthPage() {
-  const user = useSelector((state) => state.user.user);
-  const dispatch = useDispatch();
+  const user = useAppSelector((state) => state.user.user);
+  const dispatch = useAppDispatch();
   const [email, setEmail] = useState('');
   const [emailSent, setEmailSent] = useState(false);
   const loginWithEmail = async () => {
-    await supaBase.auth.signInWithOtp({
+    await supabase.auth.signInWithOtp({
       email,
     });
     setEmailSent(true);
   };
 
   const logOut = async () => {
-    await supaBase.auth.signOut();
+    await supabase.auth.signOut();
     dispatch(setUser(null));
   };
 
@@ -30,7 +30,7 @@ export default function AuthPage() {
       <div className={CLASS_NAME}>
         Logged in as
         {' '}
-        {user.email}
+        {user?.email}
         <div className={`${CLASS_NAME}_actions`}>
           <Button onClick={logOut}>Log Out</Button>
         </div>

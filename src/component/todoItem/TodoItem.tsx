@@ -1,22 +1,24 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Loader from '../../loader/Loader';
+import {useAppDispatch} from '../../store/hooks';
 import { remove } from '../../store/todoSlice';
-import supaBase from '../../supaBase.ts';
+import supabase from '../../db/supabase';
 import './todoItem.less';
 
 const CLASS_NAME = 'todo-item';
 
+
 export default function TodoItem(props) {
   const { todo } = props;
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const check = async () => {
     setLoading(true);
-    const { data, error } = await supaBase
+    const { data, error } = await supabase
       .from('todos')
       .delete()
       .eq('id', todo.id);

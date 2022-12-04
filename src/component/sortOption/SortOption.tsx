@@ -1,10 +1,16 @@
-import PropTypes from 'prop-types';
 import classNamer from '../../utils/classNamer/classNamer';
 import './sortOption.less';
 
 const CLASS_NAME = 'sort-option';
 
-export default function SortOption(props) {
+interface SortOptionProps {
+  label: string,
+  selected: boolean,
+  reverse: boolean,
+  onClick: () => void
+}
+
+export default function SortOption(props: SortOptionProps) {
   const {
     label, selected, reverse, onClick,
   } = props;
@@ -22,9 +28,9 @@ export default function SortOption(props) {
   );
 }
 
-SortOption.propTypes = {
-  label: PropTypes.string.isRequired,
-  selected: PropTypes.bool.isRequired,
-  reverse: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
-};
+// SortOption.propTypes = {
+//   label: PropTypes.string.isRequired,
+//   selected: PropTypes.bool.isRequired,
+//   reverse: PropTypes.bool.isRequired,
+//   onClick: PropTypes.func.isRequired,
+// };

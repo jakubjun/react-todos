@@ -1,26 +1,26 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { initialize } from '../../store/todoSlice';
 import Router from '../router/Router';
 import './app.less';
-import supaBase from '../../supaBase.ts';
+import supabase from '../../db/supabase';
 import { setUser } from '../../store/userSlice';
 import { stop } from '../../store/loadingSlice';
+import {useAppDispatch} from '../../store/hooks';
+import {getTodos} from '../../db/getTodos';
+import {getUser} from '../../db/getUser';
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const fetchState = async () => {
-    const { data: { user } } = await supaBase.auth.getUser();
+    const { data: { user } } = await getUser()
 
     if (!user) {
       dispatch(stop());
       return;
     }
 
-    const { data: todos, error } = await supaBase
-      .from('todos')
-      .select('*');
+    const { data: todos, error } = await getTodos()
     dispatch(setUser(user));
     dispatch(initialize(todos));
     dispatch(stop());

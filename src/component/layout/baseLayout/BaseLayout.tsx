@@ -1,15 +1,18 @@
-import { useSelector } from 'react-redux';
+import {ReactNode} from 'react';
 import Loader from '../../../loader/Loader';
-import { layoutPropTypes } from '../../../utils/propTypes';
-import Header from '../../header/Header';
+import {useAppSelector} from '../../../store/hooks';
 import Sorter from '../../sorter/Sorter';
 import './baseLayout.less';
 
 const CLASS_NAME = 'layout__base';
 
-export default function BaseLayout(props) {
+interface BaseLayoutProps {
+  children: ReactNode
+}
+
+export default function BaseLayout(props: BaseLayoutProps) {
   const { children } = props;
-  const loading = useSelector((state) => state.loading.loading);
+  const loading = useAppSelector((state) => state.loading.loading);
 
   return (
     <div className={CLASS_NAME}>
@@ -23,5 +26,3 @@ export default function BaseLayout(props) {
     </div>
   );
 }
-
-BaseLayout.propTypes = layoutPropTypes;

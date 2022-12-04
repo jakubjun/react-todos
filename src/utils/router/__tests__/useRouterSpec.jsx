@@ -2,7 +2,6 @@ import renderer from 'react-test-renderer';
 import React from 'react';
 import useRouter from '../useRouter';
 
-const tetttt = 'hehe';
 const routesConfig = [
   ['/', <div>index layout</div>, <div>index page</div>],
 
