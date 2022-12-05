@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import Button from '../../button/Button';
 import Input from '../../input/Input';
-import './authPage.less';
+import './authPage.css';
 import supabase from '../../../db/supabase';
 import { setUser } from '../../../store/userSlice';
-import {useAppDispatch, useAppSelector} from '../../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 
 const CLASS_NAME = 'auth-page';
 

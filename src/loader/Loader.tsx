@@ -1,6 +1,12 @@
-import './loader.less';
+import styled from 'styled-components';
 
-const CLASS_NAME = 'loader';
+const ThemedDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 30px;
+`;
+
 export default function Loader() {
-  return <div className={CLASS_NAME}>...</div>;
+  return <ThemedDiv>...</ThemedDiv>;
 }

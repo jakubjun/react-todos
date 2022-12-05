@@ -1,26 +1,25 @@
 import { useEffect } from 'react';
 import { initialize } from '../../store/todoSlice';
 import Router from '../router/Router';
-import './app.less';
-import supabase from '../../db/supabase';
+import './app.css';
 import { setUser } from '../../store/userSlice';
 import { stop } from '../../store/loadingSlice';
-import {useAppDispatch} from '../../store/hooks';
-import {getTodos} from '../../db/getTodos';
-import {getUser} from '../../db/getUser';
+import { useAppDispatch } from '../../store/hooks';
+import { getTodos } from '../../db/getTodos';
+import { getUser } from '../../db/getUser';
 
 function App() {
   const dispatch = useAppDispatch();
 
   const fetchState = async () => {
-    const { data: { user } } = await getUser()
+    const { data: { user } } = await getUser();
 
     if (!user) {
       dispatch(stop());
       return;
     }
 
-    const { data: todos, error } = await getTodos()
+    const { data: todos } = await getTodos();
     dispatch(setUser(user));
     dispatch(initialize(todos));
     dispatch(stop());

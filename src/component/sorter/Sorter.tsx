@@ -1,19 +1,34 @@
+import styled from 'styled-components';
 import Header from '../header/Header';
 import SortOption from '../sortOption/SortOption';
-import './sorter.less';
 import { selectSortOption, sortOptions } from '../../store/todoSlice';
-import {useAppDispatch, useAppSelector} from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
-const CLASS_NAME = 'sorter';
+const StyledWrapperDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid ${(props) => props.theme.color.primary};
+  border-bottom: 0;
+
+  @media only screen and (max-width: 500px) {
+    border: 0;
+    border-top: 1px solid ${(props) => props.theme.color.primary};
+  }
+`;
+
+const StyledHeaderDiv = styled.div`
+  display: flex;
+`;
 
 export default function Sorter() {
   const { reverse, selectedOptionId } = useAppSelector((state) => state.todos);
   const dispatch = useAppDispatch();
 
   return (
-    <div className={CLASS_NAME}>
+    <StyledWrapperDiv>
       <Header />
-      <div className="header-sorter">
+      <StyledHeaderDiv>
         {sortOptions.map(
           (sortOption) => (
             <SortOption
@@ -25,7 +40,7 @@ export default function Sorter() {
             />
           ),
         )}
-      </div>
-    </div>
+      </StyledHeaderDiv>
+    </StyledWrapperDiv>
   );
 }
