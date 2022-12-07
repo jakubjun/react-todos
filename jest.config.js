@@ -1,8 +1,4 @@
 export default {
   testEnvironment: 'jsdom',
-  transform: {
-    '^.+\\.jsx?$': 'babel-jest',
-    '^.+\\.(css|less)$': './styleMock.js',
-  },
-
+  // transform: { "^.+\\.tsx$": "ts-jest", "^.+\\.ts$": "ts-jest" } 
 };
