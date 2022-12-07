@@ -1,12 +1,11 @@
-import supabase from "./supabase";
+import supabase from './supabase';
 
 export async function getUser() {
-  return await supabase.auth.getUser();
-
+  return supabase.auth.getUser();
 }
 
-type UserResponse = Awaited<ReturnType<typeof getUser>>
+type UserResponse = Awaited<ReturnType<typeof getUser>>;
 
-export type UserResponseSuccess = UserResponse['data']
+export type UserResponseSuccess = UserResponse['data'];
 
-export type UserResponseError = UserResponse['error']
+export type UserResponseError = UserResponse['error'];

@@ -7,11 +7,15 @@ export interface User {
 
 interface UserSliceState {
   user: User | null
+  error: boolean
+  loading: boolean
 }
 
 const initialState: UserSliceState = {
-  user: null
-}
+  user: null,
+  error: false,
+  loading: true,
+};
 
 export const userSlice = createSlice({
   name: 'user',
@@ -20,13 +24,18 @@ export const userSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload;
     },
-
+    setLoading: (state, action) => {
+      state.loading = action.payload;
+    },
+    setError: (state, action) => {
+      state.error = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
 export const {
-  setUser,
+  setUser, setLoading, setError,
 } = userSlice.actions;
 
 export default userSlice.reducer;

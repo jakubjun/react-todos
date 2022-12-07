@@ -1,11 +1,14 @@
-import BaseLayout from '../component/layout/baseLayout/BaseLayout';
-import TodoListPage from '../component/page/todoListPage/TodoListPage';
-import NotFoundPage from '../component/page/notFoundPage/NotFoundPage';
-import AuthPage from '../component/page/authPage/AuthPage';
+import BaseLayout from '../component/layout/BaseLayout';
+import TodoListPage from '../component/page/TodoListPage';
+import NotFoundPage from '../component/page/NotFoundPage';
+import AuthPage from '../component/page/AuthPage';
+import AboutPage from '../component/page/AboutPage';
+import TodoListLayout from '../component/layout/TodoListLayout';
 
 const routes = [
-  ['/', BaseLayout, TodoListPage],
+  ['/', TodoListLayout, TodoListPage],
   ['/auth', BaseLayout, AuthPage],
+  ['/about', BaseLayout, AboutPage],
 ];
 
 export const notFoundRoute = [BaseLayout, NotFoundPage];
