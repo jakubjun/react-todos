@@ -9,33 +9,55 @@ interface UserSliceState {
   user: User | null
   error: boolean
   loading: boolean
+  emailSent: boolean
 }
 
 const initialState: UserSliceState = {
   user: null,
   error: false,
-  loading: true,
+  loading: false,
+  emailSent: false,
 };
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUser: (state, action) => {
+    loadUserRequest: (state) => {
+      state.loading = true;
+    },
+    loadUserSuccess: (state, action) => {
+      state.loading = false;
+      state.error = false;
       state.user = action.payload;
     },
-    setLoading: (state, action) => {
-      state.loading = action.payload;
+    loadUserError: (state) => {
+      state.loading = false;
+      state.error = true;
     },
-    setError: (state, action) => {
-      state.error = action.payload;
+    logOutUser: (state) => {
+      state.user = null;
     },
+    sendEmailRequest: (state) => {
+      state.loading = true;
+    },
+    sendEmailError: (state) => {
+      state.loading = false;
+      state.error = true;
+    },
+    sendEmailSuccess: (state) => {
+      state.loading = false;
+      state.error = false;
+      state.emailSent = true;
+    },
+
   },
 });
 
 // Action creators are generated for each case reducer function
 export const {
-  setUser, setLoading, setError,
+  loadUserError, loadUserRequest, loadUserSuccess, logOutUser,
+  sendEmailError, sendEmailRequest, sendEmailSuccess,
 } = userSlice.actions;
 
 export default userSlice.reducer;

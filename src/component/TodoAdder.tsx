@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import useAuth from '../hooks/useAuth';
 import useTodos from '../hooks/useTodos';
+import { insertTodo } from '../store/actionCreators';
+import { useAppDispatch } from '../store/hooks';
 import Loader from './Loader';
 
 const ThemedForm = styled.form`
@@ -50,11 +53,16 @@ const ThemedButton = styled.button`
 `;
 
 export default function TodoAdder() {
+  const dispatch = useAppDispatch();
   const [title, setTitle] = useState('');
-  const { todosLoading, addTodo, addLoading } = useTodos();
-  const onSubmit = async (event: React.FormEvent<HTMLElement>) => {
+  const { todosLoading, addLoading } = useTodos();
+  const { user } = useAuth();
+  const onSubmit = (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
-    addTodo(title);
+    if (!user) {
+      return;
+    }
+    dispatch(insertTodo(title, user.id));
     setTitle('');
   };
 

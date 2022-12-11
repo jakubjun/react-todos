@@ -27,7 +27,7 @@ export default function TodoListPage() {
 
   return (
     <>
-      {todos.length ? <TodoList /> : (
+      {todos?.length ? <TodoList /> : (
         <ContentPaddingDiv>
           There are no todos yet, you should add some!
         </ContentPaddingDiv>

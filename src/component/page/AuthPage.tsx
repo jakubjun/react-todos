@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import Button from '../Button';
 import Input from '../Input';
 import useAuth from '../../hooks/useAuth';
-import useSendLoginEmail from '../../hooks/useSendLoginEmail';
 import Loader from '../Loader';
+import { useAppDispatch } from '../../store/hooks';
+import { logOut, sendLoginEmail } from '../../store/actionCreators';
 
 const ThemedActionsDiv = styled.div`
     padding-top: 20px;
@@ -22,10 +23,9 @@ const ThemedFormFieldDiv = styled.div`
 `;
 
 export default function AuthPage() {
-  const { user } = useAuth();
+  const { user, emailSent, loading } = useAuth();
   const [emailInput, setEmailInput] = useState('');
-  const { sendLoginEmail, sendLoginEmailLoading, emailSent } = useSendLoginEmail();
-  const { logOut } = useAuth();
+  const dispatch = useAppDispatch();
   if (user) {
     return (
       <>
@@ -33,13 +33,13 @@ export default function AuthPage() {
         {' '}
         {user?.email}
         <ThemedActionsDiv>
-          <Button onClick={logOut}>Log Out</Button>
+          <Button onClick={() => dispatch(logOut())}>Log Out</Button>
         </ThemedActionsDiv>
       </>
     );
   }
 
-  if (sendLoginEmailLoading) {
+  if (loading) {
     return <Loader />;
   }
 
@@ -48,7 +48,12 @@ export default function AuthPage() {
   }
 
   return (
-    <form onSubmit={() => sendLoginEmail(emailInput)}>
+    <form onSubmit={(e) => {
+      e.preventDefault();
+      dispatch(sendLoginEmail(emailInput));
+      setEmailInput('');
+    }}
+    >
       <ThemedFormFieldDiv>
         <ThemedLabelDiv>email</ThemedLabelDiv>
         <Input type="email" required onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmailInput(e.target.value)} />

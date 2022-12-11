@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Todo } from '../db/getTodos';
-import useTodos from '../hooks/useTodos';
+import { deleteTodo } from '../store/actionCreators';
+import { useAppDispatch } from '../store/hooks';
 
 interface TodoItemProps {
   todo: Todo
@@ -46,13 +47,12 @@ const ThemedButton = styled.div`
 `;
 
 export default function TodoItem({ todo }:TodoItemProps) {
-  const { removeTodo } = useTodos();
-
+  const dispatch = useAppDispatch();
   return (
     <ThemedDiv>
       <ThemedTitleDiv>{todo.title}</ThemedTitleDiv>
       <ThemedActionsDiv>
-        <ThemedButton onClick={() => removeTodo(todo.id)}>✔</ThemedButton>
+        <ThemedButton onClick={() => dispatch(deleteTodo(todo.id))}>✔</ThemedButton>
       </ThemedActionsDiv>
     </ThemedDiv>
   );

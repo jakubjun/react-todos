@@ -33,23 +33,40 @@ export const todoSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
-    initialize: (state, action) => {
+    loadTodosSuccess: (state, action) => {
+      state.loading = false;
+      state.error = false;
       state.items = action.payload;
     },
-    remove: (state, action) => {
-      state.items = state.items.filter((todo) => todo.id !== action.payload);
+    loadTodosError: (state) => {
+      state.loading = false;
+      state.error = true;
     },
-    add: (state, action) => {
+    loadTodosRequest: (state) => {
+      state.loading = true;
+    },
+    addTodoRequest: (state) => {
+      state.addLoading = true;
+    },
+    addTodoError: (state) => {
+      state.addLoading = false;
+      state.error = true;
+    },
+    addTodoSuccess: (state, action) => {
+      state.addLoading = false;
+      state.error = false;
       state.items.push(action.payload);
     },
-    setLoading: (state, action) => {
-      state.loading = action.payload;
+    removeTodoRequest: (state) => {
+      state.addLoading = true;
     },
-    setAddLoading: (state, action) => {
-      state.addLoading = action.payload;
+    removeTodoSuccess: (state, action) => {
+      state.addLoading = false;
+      state.items = state.items.filter((todo) => todo.id !== action.payload);
     },
-    setError: (state, action) => {
-      state.error = action.payload;
+    removeTodoError: (state) => {
+      state.addLoading = false;
+      state.error = true;
     },
     selectSortOption: (state, action) => {
       if ((state.selectedOptionId === action.payload) && !state.reverse) {
@@ -73,7 +90,9 @@ export const todoSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
-  initialize, remove, add, selectSortOption, setLoading, setError, setAddLoading,
+  selectSortOption, loadTodosRequest, addTodoSuccess, addTodoError,
+  removeTodoError, addTodoRequest, removeTodoRequest, removeTodoSuccess,
+  loadTodosError, loadTodosSuccess,
 } = todoSlice.actions;
 
 export default todoSlice.reducer;
