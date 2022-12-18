@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { getTodos } from '../db/getTodos';
 import useAuth from '../hooks/useAuth';
 import useTodos from '../hooks/useTodos';
 import { loadTodos, loadUser } from '../store/actionCreators';
@@ -8,11 +7,11 @@ import Router from './Router';
 
 function App() {
   const dispatch = useAppDispatch();
-  const { user, userLoading } = useAuth();
+  const { user, loading } = useAuth();
   const { todos } = useTodos();
 
   useEffect(() => {
-    if (!user && !userLoading) {
+    if (!user && !loading) {
       dispatch(loadUser());
       return;
     }
@@ -20,7 +19,7 @@ function App() {
     if (todos === null) {
       dispatch(loadTodos());
     }
-  }, [user]);
+  }, []);
 
   return (
     <Router />

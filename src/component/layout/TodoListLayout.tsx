@@ -1,12 +1,7 @@
-import { ReactNode } from 'react';
 import styled from 'styled-components';
 import Loader from '../Loader';
 import Sorter from '../Sorter';
 import useTodos from '../../hooks/useTodos';
-
-interface BaseLayoutProps {
-  children: ReactNode
-}
 
 const ThemedWrapperDiv = styled.div`
   display: flex;
@@ -37,7 +32,7 @@ const ThemedContentDiv = styled.div`
       }
 `;
 
-export default function TodoListLayout(props: BaseLayoutProps) {
+export default function TodoListLayout(props: React.HTMLAttributes<HTMLElement>) {
   const { children } = props;
 
   const { todosLoading } = useTodos();

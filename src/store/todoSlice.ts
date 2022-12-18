@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Todo } from '../db/getTodos';
 
 const defaultSortOption = {
@@ -12,7 +12,7 @@ export const sortOptions = Object.freeze([
 ]);
 
 interface TodoSliceState {
-  items: Todo[] | null,
+  items: Todo[],
   loading: boolean,
   addLoading: boolean,
   error: boolean,
@@ -21,7 +21,7 @@ interface TodoSliceState {
 }
 
 const initialState:TodoSliceState = {
-  items: null,
+  items: [],
   loading: false,
   addLoading: false,
   error: false,
@@ -33,7 +33,7 @@ export const todoSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
-    loadTodosSuccess: (state, action) => {
+    loadTodosSuccess: (state, action: PayloadAction<Todo[]>) => {
       state.loading = false;
       state.error = false;
       state.items = action.payload;

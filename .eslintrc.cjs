@@ -30,5 +30,11 @@ module.exports = {
                 tsx: 'never',
             },
         ],
+    'no-param-reassign': ['error', {
+          props: true,
+          ignorePropertyModificationsFor: [
+            'state',
+          ]
+    }],
     },
 };

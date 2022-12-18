@@ -27,8 +27,8 @@ describe('classNamer should work', () => {
   });
 
   test('with complex object', () => {
-    expect(classNamer({ 'color-red': true, 'color-blue': 1 === 2 })).toBe('color-red');
-    expect(classNamer({ 'color-red': false, 'color-blue': 1 === 2 })).toBe('');
+    expect(classNamer({ 'color-red': true, 'color-blue': false })).toBe('color-red');
+    expect(classNamer({ 'color-red': false, 'color-blue': false })).toBe('');
   });
 
   test('with combination of objects, strings and deduplications', () => {

@@ -7,7 +7,7 @@ import useTodos from '../../hooks/useTodos';
 import ContentPaddingDiv from '../ContentPaddingDiv';
 
 export default function TodoListPage() {
-  const { user, userLoading } = useAuth();
+  const { user, loading: userLoading } = useAuth();
   const { todos, todosLoading } = useTodos();
 
   if (userLoading || todosLoading) {

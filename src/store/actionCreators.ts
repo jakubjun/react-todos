@@ -1,26 +1,24 @@
+import { Action, ThunkDispatch } from '@reduxjs/toolkit';
 import { getTodos } from '../db/getTodos';
 import { getUser } from '../db/getUser';
 import {
-  addTodoError,
-  addTodoRequest, addTodoSuccess, loadTodosError, loadTodosRequest, loadTodosSuccess, removeTodoError, removeTodoRequest, removeTodoSuccess,
+  addTodoError, addTodoRequest, addTodoSuccess,
+  loadTodosError, loadTodosRequest, loadTodosSuccess,
+  removeTodoError, removeTodoRequest, removeTodoSuccess,
 } from './todoSlice';
 import {
-  loadUserError, loadUserRequest, loadUserSuccess, logOutUser, sendEmailError, sendEmailRequest, sendEmailSuccess,
+  loadUserError, loadUserRequest, loadUserSuccess,
+  logOutUser, sendEmailError, sendEmailRequest, sendEmailSuccess,
 } from './userSlice';
 import dbLogOut from '../db/logOut';
 import addTodo from '../db/addTodo';
 import dbSendLoginEmail from '../db/sendLoginEmail';
 import { removeTodo } from '../db/removeTodo';
+import { RootState } from './store';
 
 export function loadTodos() {
   // Interpreted by the thunk middleware:
-  return async function (dispatch) {
-    // const { posts } = getState();
-    // if (posts[userId]) {
-    // There is cached data! Don't do anything.
-    // return;
-    // }
-
+  return async function (dispatch: ThunkDispatch<RootState, void, Action>) {
     dispatch(loadTodosRequest());
     const { data, error } = await getTodos();
 
@@ -34,7 +32,7 @@ export function loadTodos() {
 }
 
 export function loadUser() {
-  return async function (dispatch) {
+  return async function (dispatch: ThunkDispatch<RootState, void, Action>) {
     dispatch(loadUserRequest());
     const { data, error } = await getUser();
 
@@ -48,7 +46,7 @@ export function loadUser() {
 }
 
 export function insertTodo(title: string, userId: string) {
-  return async function (dispatch) {
+  return async function (dispatch: ThunkDispatch<RootState, void, Action>) {
     dispatch(addTodoRequest());
     const { data, error } = await addTodo(title, userId);
 
@@ -62,10 +60,10 @@ export function insertTodo(title: string, userId: string) {
 }
 
 export function deleteTodo(todoId: number) {
-  return async function (dispatch) {
+  return async function (dispatch: ThunkDispatch<RootState, void, Action>) {
     dispatch(removeTodoRequest());
 
-    const { data, error } = await removeTodo(todoId);
+    const { error } = await removeTodo(todoId);
 
     if (error) {
       dispatch(removeTodoError());
@@ -77,14 +75,14 @@ export function deleteTodo(todoId: number) {
 }
 
 export function logOut() {
-  return async function (dispatch) {
+  return async function (dispatch: ThunkDispatch<RootState, void, Action>) {
     await dbLogOut();
     dispatch(logOutUser());
   };
 }
 
 export function sendLoginEmail(email: string) {
-  return async function (dispatch) {
+  return async function (dispatch: ThunkDispatch<RootState, void, Action>) {
     dispatch(sendEmailRequest());
     const { error } = await dbSendLoginEmail(email);
 

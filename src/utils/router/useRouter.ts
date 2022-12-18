@@ -1,7 +1,14 @@
+import { FC } from 'react';
 import useLocation from './useLocation';
-import configRoutes, { notFoundRoute as configNotFoundRoute } from '../../config/routes';
 
-export default function useRouter(routes = configRoutes, notFoundRoute = configNotFoundRoute) {
+export type Route = [string, FC<any>, FC<any>];
+
+export type NotFoundRoute = [FC<any>, FC<any>];
+
+export default function useRouter(
+  routes:Route[],
+  notFoundRoute: [FC<any>, FC<any>],
+): NotFoundRoute {
   const path = useLocation();
 
   const matchedRoute = routes.find(([pattern]) => {
@@ -9,9 +16,10 @@ export default function useRouter(routes = configRoutes, notFoundRoute = configN
       return pattern === path;
     }
 
-    if (pattern instanceof RegExp) {
-      return pattern.test(path);
-    }
+    // TODO add support for regex route patterns
+    // if (pattern instanceof RegExp) {
+    //   return pattern.test(path);
+    // }
 
     return false;
   });
