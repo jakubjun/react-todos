@@ -8,7 +8,7 @@ import Router from './Router';
 function App() {
   const dispatch = useAppDispatch();
   const { user, loading } = useAuth();
-  const { todos } = useTodos();
+  const { todos, todosLoading } = useTodos();
 
   useEffect(() => {
     if (!user && !loading) {
@@ -16,10 +16,10 @@ function App() {
       return;
     }
 
-    if (todos === null) {
+    if (todos === null && !todosLoading) {
       dispatch(loadTodos());
     }
-  }, []);
+  }, [user]);
 
   return (
     <Router />

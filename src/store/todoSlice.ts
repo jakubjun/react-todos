@@ -12,7 +12,7 @@ export const sortOptions = Object.freeze([
 ]);
 
 interface TodoSliceState {
-  items: Todo[],
+  items: Todo[] | null,
   loading: boolean,
   addLoading: boolean,
   error: boolean,
@@ -21,7 +21,7 @@ interface TodoSliceState {
 }
 
 const initialState:TodoSliceState = {
-  items: [],
+  items: null,
   loading: false,
   addLoading: false,
   error: false,
@@ -55,6 +55,9 @@ export const todoSlice = createSlice({
     addTodoSuccess: (state, action) => {
       state.addLoading = false;
       state.error = false;
+      if (state.items === null) {
+        state.items = [action.payload];
+      }
       state.items.push(action.payload);
     },
     removeTodoRequest: (state) => {
@@ -62,6 +65,9 @@ export const todoSlice = createSlice({
     },
     removeTodoSuccess: (state, action) => {
       state.addLoading = false;
+      if (state.items === null) {
+        return;
+      }
       state.items = state.items.filter((todo) => todo.id !== action.payload);
     },
     removeTodoError: (state) => {
@@ -72,12 +78,19 @@ export const todoSlice = createSlice({
       if ((state.selectedOptionId === action.payload) && !state.reverse) {
         state.reverse = true;
 
+        if (state.items === null) {
+          return;
+        }
+
         state.items = state.items.reverse();
         return;
       }
 
       state.reverse = false;
       state.selectedOptionId = action.payload;
+      if (state.items === null) {
+        return;
+      }
       state.items = state.items.sort(
         (sortOptions.find(
           (sortOption) => sortOption.id === action.payload,
